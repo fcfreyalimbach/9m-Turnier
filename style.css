@@ -749,12 +749,16 @@ td {
 
     margin-bottom:30px;
 
+     padding-top:17px;
+    padding-bottom:17px;
+
+
 }
 #top3 h2{
 
     display:inline-block;
 
-    margin:0 auto 5px auto;
+    margin:0 auto 25px auto;
 
     padding:10px 28px;
 
@@ -769,7 +773,5 @@ td {
     font-weight:bold;
 
     letter-spacing:1px;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.2);
 
 }
