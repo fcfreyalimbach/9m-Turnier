@@ -44,7 +44,7 @@ body {
 
     color:white;
 
-    padding:15px 40px 0px 40px;
+    padding:15px 40px;
 
     border-radius:15px;
 
@@ -84,8 +84,6 @@ body {
 
     margin:0;
 
-    margin-bottom:5px;
-
     font-size:34px;
 
 }
@@ -95,8 +93,6 @@ body {
 .header-text p {
 
     margin-top:5px;
-
-    margin-bottom:10px;
 
     font-size:18px;
 
@@ -110,7 +106,7 @@ body {
 
     display:inline-block;
 
-    margin-top:30px;
+    margin-top:15px;
 
 }
 
@@ -287,7 +283,8 @@ td:last-child {
 /* alle Gruppenzeilen weiß */
 
 #gruppeA tr,
-#gruppeB tr {
+#gruppeB tr,
+#gruppeC tr {
 
     background:#FFFFFF !important;
 
@@ -300,7 +297,9 @@ td:last-child {
 #gruppeA tr:nth-child(1),
 #gruppeA tr:nth-child(2),
 #gruppeB tr:nth-child(1),
-#gruppeB tr:nth-child(2) {
+#gruppeB tr:nth-child(2),
+#gruppeC tr:nth-child(1),
+#gruppeC tr:nth-child(2) {
 
     background:#E8F5E9 !important;
 
@@ -311,7 +310,8 @@ td:last-child {
 /* Hover */
 
 #gruppeA tr:hover,
-#gruppeB tr:hover {
+#gruppeB tr:hover,
+#gruppeC tr:hover {
 
     background:#dff2df !important;
 
@@ -331,12 +331,10 @@ td:nth-child(2) {
 
 }
 
+
 /* =====================
    SPIELPLAN / K.O. RUNDE
 ===================== */
-
-
-/* Noch offene Spiele abwechselnd */
 
 #spielplan tr:nth-child(even),
 #koRunde tr:nth-child(even) {
@@ -364,8 +362,6 @@ td:nth-child(2) {
 
 }
 
-
-
 /* =====================
    K.O.-RUNDE TITEL
 ===================== */
@@ -376,13 +372,13 @@ td:nth-child(2) {
 
     color:#285737;
 
-    font-size:22px;
+    font-size:20px;
 
     font-weight:bold;
 
     text-align:center;
 
-    padding:15px;
+    padding:8px;
 
 }
 
@@ -458,19 +454,6 @@ td:nth-child(2) {
 #koRunde td:nth-child(5) {
 
     white-space:nowrap;
-
-}
-
-
-
-/* 9m Sieger / Shootout */
-
-#spielplan th:nth-child(7),
-#spielplan td:nth-child(7),
-#koRunde th:nth-child(7),
-#koRunde td:nth-child(7) {
-
-    width:100px;
 
 }
 
@@ -582,7 +565,9 @@ td {
 #gruppeA th:nth-child(1),
 #gruppeA td:nth-child(1),
 #gruppeB th:nth-child(1),
-#gruppeB td:nth-child(1) {
+#gruppeB td:nth-child(1),
+#gruppeC th:nth-child(1),
+#gruppeC td:nth-child(1) {
 
     width:30px;
 
@@ -597,7 +582,9 @@ td {
 #gruppeA th:nth-child(2),
 #gruppeA td:nth-child(2),
 #gruppeB th:nth-child(2),
-#gruppeB td:nth-child(2) {
+#gruppeB td:nth-child(2),
+#gruppeC th:nth-child(2),
+#gruppeC td:nth-child(2) {
 
     width:auto;
 
@@ -618,7 +605,9 @@ td {
 #gruppeA th:nth-child(n+3),
 #gruppeA td:nth-child(n+3),
 #gruppeB th:nth-child(n+3),
-#gruppeB td:nth-child(n+3) {
+#gruppeB td:nth-child(n+3),
+#gruppeC th:nth-child(n+3),
+#gruppeC td:nth-child(n+3) {
 
     width:32px;
 
@@ -632,8 +621,11 @@ td {
 
 
 
+/* Überschrift */
+
 #gruppeA th,
-#gruppeB th {
+#gruppeB th,
+#gruppeC th {
 
     font-size:13px;
 
