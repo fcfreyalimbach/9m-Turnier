@@ -1,0 +1,677 @@
+* {
+    box-sizing:border-box;
+}
+
+
+html {
+    scroll-behavior:smooth;
+}
+
+
+body {
+
+    margin:0;
+
+    padding:20px;
+
+    padding-bottom:80px;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#eaf5ea;
+
+    color:#1b1b1b;
+
+}
+
+
+
+/* =====================
+   HEADER
+===================== */
+
+.header {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    background:#285737;
+
+    color:white;
+
+    padding:15px 40px 0px 40px;
+
+    border-radius:15px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.vereinslogo {
+
+    position:absolute;
+
+    left:30px;
+
+    top:15px;
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:contain;
+
+}
+
+
+
+.header-text {
+
+    text-align:center;
+
+}
+
+
+
+.header-text h1 {
+
+    margin:0;
+
+    margin-bottom:5px;
+
+    font-size:34px;
+
+}
+
+
+
+.header-text p {
+
+    margin-top:5px;
+
+    margin-bottom:10px;
+
+    font-size:18px;
+
+    line-height:1.5;
+
+}
+
+
+
+.datum {
+
+    display:inline-block;
+
+    margin-top:30px;
+
+}
+
+
+
+/* =====================
+   NAVIGATION
+===================== */
+
+.navigation {
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+
+}
+
+
+
+.navigation a {
+
+    text-decoration:none;
+
+    background:#285737;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+}
+
+
+
+.navigation a:hover {
+
+    background:#1e4229;
+
+}
+
+
+
+/* =====================
+   BEREICHE
+===================== */
+
+main {
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+
+
+.box {
+
+    background:white;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+
+}
+
+
+
+h2 {
+
+    text-align:center;
+
+    color:#285737;
+
+}
+
+
+
+/* =====================
+   TABELLEN SCROLL
+===================== */
+
+.tabelle-scroll {
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+
+/* =====================
+   TABELLEN
+===================== */
+
+table {
+
+    width:auto;
+
+    min-width:100%;
+
+    border-collapse:collapse;
+
+    table-layout:auto;
+
+}
+
+
+
+thead {
+
+    background:#285737;
+
+    color:white;
+
+}
+
+
+
+th {
+
+    padding:12px;
+
+    text-align:center;
+
+    border-right:1px solid #3b8f4b;
+
+}
+
+
+
+td {
+
+    padding:10px;
+
+    text-align:center;
+
+    border-right:1px solid #cfcfcf;
+
+    border-bottom:1px solid #d8d8d8;
+
+}
+
+
+
+th:last-child,
+td:last-child {
+
+    border-right:none;
+
+}
+
+
+
+/* =====================
+   GRUPPENTABELLEN
+===================== */
+
+
+/* alle Gruppenzeilen weiß */
+
+#gruppeA tr,
+#gruppeB tr {
+
+    background:#FFFFFF !important;
+
+}
+
+
+
+/* Top 2 Plätze grün */
+
+#gruppeA tr:nth-child(1),
+#gruppeA tr:nth-child(2),
+#gruppeB tr:nth-child(1),
+#gruppeB tr:nth-child(2) {
+
+    background:#E8F5E9 !important;
+
+}
+
+
+
+/* Hover */
+
+#gruppeA tr:hover,
+#gruppeB tr:hover {
+
+    background:#dff2df !important;
+
+}
+
+
+
+/* Mannschaft links */
+
+td:nth-child(2) {
+
+    text-align:left;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+}
+
+/* =====================
+   SPIELPLAN / K.O. RUNDE
+===================== */
+
+
+/* Noch offene Spiele abwechselnd */
+
+#spielplan tr:nth-child(even),
+#koRunde tr:nth-child(even) {
+
+    background:#F8F8F8;
+
+}
+
+
+#spielplan tr:nth-child(odd),
+#koRunde tr:nth-child(odd) {
+
+    background:#FFFFFF;
+
+}
+
+
+
+/* Gespielte Spiele */
+
+#spielplan tr:has(td:nth-child(6):not(:empty)),
+#koRunde tr:has(td:nth-child(6):not(:empty)) {
+
+    background:#E2E2E2 !important;
+
+}
+
+
+
+/* =====================
+   K.O.-RUNDE TITEL
+===================== */
+
+.runde-titel td {
+
+    background:#E8F5E9 !important;
+
+    color:#285737;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    padding:15px;
+
+}
+
+
+
+/* =====================
+   SPIELPLAN / K.O.
+   SPALTEN
+===================== */
+
+
+/* Spiel */
+
+#spielplan th:nth-child(1),
+#spielplan td:nth-child(1),
+#koRunde th:nth-child(1),
+#koRunde td:nth-child(1) {
+
+    width:55px;
+
+}
+
+
+
+/* Beginn */
+
+#spielplan th:nth-child(2),
+#spielplan td:nth-child(2),
+#koRunde th:nth-child(2),
+#koRunde td:nth-child(2) {
+
+    width:75px;
+
+}
+
+
+
+/* Platz */
+
+#spielplan th:nth-child(3),
+#spielplan td:nth-child(3),
+#koRunde th:nth-child(3),
+#koRunde td:nth-child(3) {
+
+    width:55px;
+
+}
+
+
+
+/* Ergebnis */
+
+#spielplan th:nth-child(6),
+#spielplan td:nth-child(6),
+#koRunde th:nth-child(6),
+#koRunde td:nth-child(6) {
+
+    width:80px;
+
+}
+
+
+
+/* Heim / Gast */
+
+#spielplan th:nth-child(4),
+#spielplan td:nth-child(4),
+#spielplan th:nth-child(5),
+#spielplan td:nth-child(5),
+#koRunde th:nth-child(4),
+#koRunde td:nth-child(4),
+#koRunde th:nth-child(5),
+#koRunde td:nth-child(5) {
+
+    white-space:nowrap;
+
+}
+
+
+
+/* 9m Sieger / Shootout */
+
+#spielplan th:nth-child(7),
+#spielplan td:nth-child(7),
+#koRunde th:nth-child(7),
+#koRunde td:nth-child(7) {
+
+    width:100px;
+
+}
+
+
+
+/* =====================
+   MOBILE
+===================== */
+
+@media(max-width:770px) {
+
+
+body {
+
+    padding:5px;
+
+    padding-bottom:60px;
+
+}
+
+
+
+/* Boxen auf Handy näher an den Rand */
+
+.box {
+
+    padding:5px;
+
+    margin-bottom:15px;
+
+    border-radius:5px;
+
+}
+
+
+
+/* HEADER */
+
+.header {
+
+    flex-direction:column;
+
+    padding:15px 10px;
+
+}
+
+
+
+.vereinslogo {
+
+    position:static;
+
+    width:65px;
+
+    height:65px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.header-text {
+
+    width:100%;
+
+}
+
+
+
+.header-text h1 {
+
+    font-size:23px;
+
+    line-height:1.2;
+
+}
+
+
+
+.header-text p {
+
+    font-size:16px;
+
+}
+
+
+
+/* Tabellen */
+
+th,
+td {
+
+    font-size:13px;
+
+    padding:7px;
+
+}
+
+
+
+/* =====================
+   GRUPPEN MOBILE
+===================== */
+
+
+/* Platz */
+
+#gruppeA th:nth-child(1),
+#gruppeA td:nth-child(1),
+#gruppeB th:nth-child(1),
+#gruppeB td:nth-child(1) {
+
+    width:30px;
+
+    padding:4px 2px;
+
+}
+
+
+
+/* Mannschaft */
+
+#gruppeA th:nth-child(2),
+#gruppeA td:nth-child(2),
+#gruppeB th:nth-child(2),
+#gruppeB td:nth-child(2) {
+
+    width:auto;
+
+    min-width:0;
+
+    white-space:nowrap;
+
+    padding:4px;
+
+    font-size:13px;
+
+}
+
+
+
+/* Zahlen */
+
+#gruppeA th:nth-child(n+3),
+#gruppeA td:nth-child(n+3),
+#gruppeB th:nth-child(n+3),
+#gruppeB td:nth-child(n+3) {
+
+    width:32px;
+
+    min-width:32px;
+
+    padding:4px 1px;
+
+    font-size:13px;
+
+}
+
+
+
+#gruppeA th,
+#gruppeB th {
+
+    font-size:13px;
+
+}
+
+
+}
+
+
+
+/* =====================
+   WASSERZEICHEN
+===================== */
+
+.wasserzeichen {
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:40px;
+
+    margin-bottom:0px;
+
+}
+
+
+
+.wasserzeichen img {
+
+    width:150px;
+
+    height:auto;
+
+    opacity:0.12;
+
+    user-select:none;
+
+    pointer-events:none;
+
+}
