@@ -40,7 +40,7 @@ body {
 
     position:relative;
 
-    background:#285737;
+    background:#0F4A27;
 
     color:white;
 
@@ -152,12 +152,7 @@ body {
 
 .navigation a:hover {
 
-    background:#555555;
-
-}
-.navigation a:active {
-
-    background:#444444;
+    background:#1b1b1b;
 
 }
 
@@ -197,7 +192,7 @@ h2 {
 
     text-align:center;
 
-    color:#285737;
+    color:#0F4A27;
 
 }
 
@@ -237,7 +232,7 @@ table {
 
 thead {
 
-    background:#285737;
+    background:#0F4A27;
 
     color:white;
 
@@ -375,7 +370,7 @@ td:nth-child(2) {
 
     background:#E8F5E9 !important;
 
-    color:#285737;
+    color:#0F4A27;
 
     font-size:20px;
 
@@ -736,7 +731,7 @@ td {
 .titel{
 
     font-size:17px;
-    color:#285737;
+    color:#0F4A27;
     font-weight:bold;
     margin-bottom:6px;
 
@@ -754,7 +749,7 @@ td {
 
     margin-bottom:30px;
 
-    padding-top:17px;
+     padding-top:17px;
     padding-bottom:17px;
 
     max-width:1200px;
@@ -770,7 +765,7 @@ td {
 
     padding:10px 28px;
 
-    background:#285737;
+    background:#0F4A27;
 
     color:white;
 
