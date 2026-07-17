@@ -152,7 +152,12 @@ body {
 
 .navigation a:hover {
 
-    background:#1e4229;
+    background:#555555;
+
+}
+.navigation a:active {
+
+    background:#444444;
 
 }
 
