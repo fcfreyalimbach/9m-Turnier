@@ -749,8 +749,11 @@ td {
 
     margin-bottom:30px;
 
-     padding-top:17px;
+    padding-top:17px;
     padding-bottom:17px;
+
+    max-width:1200px;
+    margin:0 auto 25px auto;
 
 
 }
