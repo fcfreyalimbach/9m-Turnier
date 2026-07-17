@@ -2,7 +2,7 @@
 // EINSTELLUNGEN
 // =====================
 
-const API_URL = "  ";
+const API_URL = "https://script.google.com/macros/s/AKfycbzIBuMwB5SJO0o9id6zMjaVVWFpod9Mww2QsHr3GyWERX2WG9R7muszCXfHrJ2HHECP/exec";
 
 const AKTUALISIERUNG = 5000;
 
@@ -34,6 +34,12 @@ async function ladeTabelle() {
         zeigeTabelle(
             daten.gruppeB,
             "gruppeB"
+        );
+
+
+        zeigeTabelle(
+            daten.gruppeC,
+            "gruppeC"
         );
 
 
@@ -100,13 +106,14 @@ function zeigeTabelle(daten, zielID) {
 
             <td>${zeile[5] ?? ""}</td>
 
-                         <td>${(zeile[6] ?? "") + " : " + (zeile[7] ?? "")}</td>
+            <td>
+                ${zeile[6] ?? ""} : ${zeile[7] ?? ""}
+            </td>
 
-                <td>${zeile[8] ?? ""}</td>             
+            <td>${zeile[8] ?? ""}</td>
 
             <td>${zeile[9] ?? ""}</td>
 
-            <td>${zeile[10] ?? ""}</td>
 
         </tr>
 
@@ -224,7 +231,7 @@ function zeigeSpielplan(daten, zielID) {
 
             <td>${ergebnis}</td>
 
-            <td>${zeile[7] ?? ""}</td>
+        
 
         </tr>
 
@@ -245,38 +252,30 @@ function zeigeSpielplan(daten, zielID) {
 
 // =====================
 // K.O.-RUNDE
+// Überschrift aus Spalte B
 // =====================
 
 function zeigeKORunde(daten, zielID) {
 
     let html = "";
 
-
-    html += `
-
-    <tr class="runde-titel">
-
-        <td colspan="7">
-            Halbfinale
-        </td>
-
-    </tr>
-
-    `;
+    let letzteRunde = "";
 
 
 
-    daten.forEach((zeile, index) => {
+    daten.forEach(zeile => {
+
+
+        // Runde aus Spalte B erkennen
+
+        let aktuelleRunde = zeile[1];
 
 
 
-        if (!zeile[0]) {
-            return;
-        }
-
-
-
-        if (index === 2) {
+        if (
+            aktuelleRunde !== "" &&
+            aktuelleRunde !== letzteRunde
+        ) {
 
 
             html += `
@@ -284,13 +283,26 @@ function zeigeKORunde(daten, zielID) {
             <tr class="runde-titel">
 
                 <td colspan="7">
-                    Finale
+                    ${aktuelleRunde}
                 </td>
 
             </tr>
 
             `;
 
+
+            letzteRunde = aktuelleRunde;
+
+        }
+
+
+
+        // Spiel nur anzeigen wenn Spielnummer vorhanden
+
+        if (
+            !zeile[0]
+        ) {
+            return;
         }
 
 
@@ -319,7 +331,7 @@ function zeigeKORunde(daten, zielID) {
 
             <td>${ergebnis}</td>
 
-            <td>${zeile[10] ?? ""}</td>
+            
 
         </tr>
 
@@ -337,11 +349,9 @@ function zeigeKORunde(daten, zielID) {
 }
 
 
-
 // =====================
 // START
 // =====================
-
 
 ladeTabelle();
 
