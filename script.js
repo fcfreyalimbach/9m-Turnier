@@ -2,7 +2,7 @@
 // EINSTELLUNGEN
 // =====================
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwOAshkRev1wU_-KG4WwTSSYNQxc_I3xk9OaJO0INZ-6bXPSPRxEuZtUr9g49SSQ-cP/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzIBuMwB5SJO0o9id6zMjaVVWFpod9Mww2QsHr3GyWERX2WG9R7muszCXfHrJ2HHECP/exec";
 
 const AKTUALISIERUNG = 5000;
 
@@ -37,12 +37,17 @@ async function ladeTabelle() {
         );
 
 
+        zeigeTabelle(
+            daten.gruppeC,
+            "gruppeC"
+        );
+
+
 
         zeigeSpielplan(
             daten.spielplan,
             "spielplan"
         );
-
 
 
         zeigeKORunde(
@@ -65,11 +70,10 @@ async function ladeTabelle() {
 
 
 // =====================
-// GRUPPENTABELLE
+// LIVE TABELLE
 // =====================
 
 function zeigeTabelle(daten, zielID) {
-
 
     let html = "";
 
@@ -81,9 +85,7 @@ function zeigeTabelle(daten, zielID) {
             !zeile[1] ||
             zeile[1].toString().trim() === ""
         ) {
-
             return;
-
         }
 
 
@@ -105,13 +107,131 @@ function zeigeTabelle(daten, zielID) {
             <td>${zeile[5] ?? ""}</td>
 
             <td>
-            ${(zeile[6] ?? "")} : ${(zeile[7] ?? "")}
+                ${zeile[6] ?? ""} : ${zeile[7] ?? ""}
             </td>
 
             <td>${zeile[8] ?? ""}</td>
 
-            <td>${zeile[10] ?? ""}</td>
+            <td>${zeile[9] ?? ""}</td>
 
+
+        </tr>
+
+        `;
+
+    });
+
+
+
+    document
+        .getElementById(zielID)
+        .innerHTML = html;
+
+}
+
+
+
+// =====================
+// ERGEBNIS FORMATIEREN
+// =====================
+
+function erstelleErgebnis(heim, gast) {
+
+
+    if (
+        heim === "" ||
+        gast === "" ||
+        heim == null ||
+        gast == null
+    ) {
+
+        return "";
+
+    }
+
+
+
+    let heimTore = Number(heim);
+
+    let gastTore = Number(gast);
+
+
+
+    if (heimTore > gastTore) {
+
+
+        return `
+            <b>${heimTore}</b> : ${gastTore}
+        `;
+
+
+    } else if (gastTore > heimTore) {
+
+
+        return `
+            ${heimTore} : <b>${gastTore}</b>
+        `;
+
+
+    } else {
+
+
+        return `
+            ${heimTore} : ${gastTore}
+        `;
+
+    }
+
+}
+
+
+
+// =====================
+// SPIELPLAN
+// =====================
+
+function zeigeSpielplan(daten, zielID) {
+
+    let html = "";
+
+
+    daten.forEach(zeile => {
+
+
+        if (
+            !zeile[0] ||
+            zeile[0].toString().trim() === ""
+        ) {
+            return;
+        }
+
+
+
+        let ergebnis =
+            erstelleErgebnis(
+                zeile[5],
+                zeile[6]
+            );
+
+
+
+        html += `
+
+        <tr>
+
+            <td>${zeile[0] ?? ""}</td>
+
+            <td>${zeile[1] ?? ""}</td>
+
+            <td>${zeile[2] ?? ""}</td>
+
+            <td>${zeile[3] ?? ""}</td>
+
+            <td>${zeile[4] ?? ""}</td>
+
+            <td>${ergebnis}</td>
+
+        
 
         </tr>
 
@@ -123,120 +243,8 @@ function zeigeTabelle(daten, zielID) {
 
 
     document
-    .getElementById(zielID)
-    .innerHTML = html;
-
-}
-
-
-
-// =====================
-// ERGEBNIS
-// =====================
-
-function erstelleErgebnis(heim,gast){
-
-
-    if(
-        heim === "" ||
-        gast === "" ||
-        heim == null ||
-        gast == null
-    ){
-
-        return "";
-
-    }
-
-
-
-    if(Number(heim)>Number(gast)){
-
-        return `
-        <b>${heim}</b> : ${gast}
-        `;
-
-    }
-
-
-    if(Number(gast)>Number(heim)){
-
-        return `
-        ${heim} : <b>${gast}</b>
-        `;
-
-    }
-
-
-    return `${heim} : ${gast}`;
-
-}
-
-
-
-// =====================
-// SPIELPLAN
-// =====================
-
-function zeigeSpielplan(daten,zielID){
-
-
-let html="";
-
-
-daten.forEach(zeile=>{
-
-
-if(!zeile[0]) return;
-
-
-
-let ergebnis =
-erstelleErgebnis(
-    zeile[5],
-    zeile[6]
-);
-
-
-
-html +=`
-
-<tr>
-
-<td>${zeile[0]}</td>
-
-<td>${zeile[1]}</td>
-
-<td>${zeile[2]}</td>
-
-<td>${zeile[3]}</td>
-
-<td>${zeile[4]}</td>
-
-<td>${ergebnis}</td>
-
-<td>${zeile[7] ?? ""}</td>
-
-
-</tr>
-
-
-</tr>
-
-</tr>
-
-`;
-
-
-
-});
-
-
-
-document
-.getElementById(zielID)
-.innerHTML=html;
-
+        .getElementById(zielID)
+        .innerHTML = html;
 
 }
 
@@ -244,228 +252,109 @@ document
 
 // =====================
 // K.O.-RUNDE
+// Überschrift aus Spalte B
 // =====================
 
 function zeigeKORunde(daten, zielID) {
 
+    let html = "";
 
-let html = "";
-
-
-
-// Funktion für Ergebnis + 9m Text
-
-function koErgebnis(zeile) {
+    let letzteRunde = "";
 
 
-    let ergebnis =
-        erstelleErgebnis(
-            zeile[8],
-            zeile[9]
-        );
+
+    daten.forEach(zeile => {
 
 
-    if (
-        zeile[10] &&
-        zeile[10].toString().trim() !== ""
-    ) {
+        // Runde aus Spalte B erkennen
 
-        ergebnis += `<br><small>${zeile[10]}</small>`;
-
-    }
+        let aktuelleRunde = zeile[1];
 
 
-    return ergebnis;
+
+        if (
+            aktuelleRunde !== "" &&
+            aktuelleRunde !== letzteRunde
+        ) {
+
+
+            html += `
+
+            <tr class="runde-titel">
+
+                <td colspan="7">
+                    ${aktuelleRunde}
+                </td>
+
+            </tr>
+
+            `;
+
+
+            letzteRunde = aktuelleRunde;
+
+        }
+
+
+
+        // Spiel nur anzeigen wenn Spielnummer vorhanden
+
+        if (
+            !zeile[0]
+        ) {
+            return;
+        }
+
+
+
+        let ergebnis =
+            erstelleErgebnis(
+                zeile[8],
+                zeile[9]
+            );
+
+
+
+        html += `
+
+        <tr>
+
+            <td>${zeile[0] ?? ""}</td>
+
+            <td>${zeile[4] ?? ""}</td>
+
+            <td>${zeile[5] ?? ""}</td>
+
+            <td>${zeile[6] ?? ""}</td>
+
+            <td>${zeile[7] ?? ""}</td>
+
+            <td>${ergebnis}</td>
+
+            
+
+        </tr>
+
+        `;
+
+
+    });
+
+
+
+    document
+        .getElementById(zielID)
+        .innerHTML = html;
 
 }
-
-
-
-// =====================
-// HALBFINALE
-// =====================
-
-html += `
-
-<tr class="runde-titel">
-
-<td colspan="6">
-Halbfinale
-</td>
-
-</tr>
-
-`;
-
-
-
-daten.forEach(zeile => {
-
-
-if(
-    zeile[0] == "13" ||
-    zeile[0] == "14"
-){
-
-
-html +=`
-
-<tr>
-
-<td>${zeile[0]}</td>
-
-<td>${zeile[4]}</td>
-
-<td>${zeile[5]}</td>
-
-<td>${zeile[6]}</td>
-
-<td>${zeile[7]}</td>
-
-<td>
-${koErgebnis(zeile)}
-</td>
-
-</tr>
-
-`;
-
-}
-
-
-});
-
-
-
-
-// =====================
-// SPIEL UM PLATZ 3
-// =====================
-
-html += `
-
-<tr class="runde-titel">
-
-<td colspan="6">
-Spiel um Platz 3
-</td>
-
-</tr>
-
-`;
-
-
-
-daten.forEach(zeile => {
-
-
-if(
-    zeile[0] == "15"
-){
-
-
-html +=`
-
-<tr>
-
-<td>${zeile[0]}</td>
-
-<td>${zeile[4]}</td>
-
-<td>${zeile[5]}</td>
-
-<td>${zeile[6]}</td>
-
-<td>${zeile[7]}</td>
-
-<td>
-${koErgebnis(zeile)}
-</td>
-
-</tr>
-
-`;
-
-}
-
-
-});
-
-
-
-
-// =====================
-// FINALE
-// =====================
-
-html += `
-
-<tr class="runde-titel">
-
-<td colspan="6">
-Finale
-</td>
-
-</tr>
-
-`;
-
-
-
-daten.forEach(zeile => {
-
-
-if(
-    zeile[0] == "16"
-){
-
-
-html +=`
-
-<tr>
-
-<td>${zeile[0]}</td>
-
-<td>${zeile[4]}</td>
-
-<td>${zeile[5]}</td>
-
-<td>${zeile[6]}</td>
-
-<td>${zeile[7]}</td>
-
-<td>
-${koErgebnis(zeile)}
-</td>
-
-</tr>
-
-`;
-
-}
-
-
-});
-
-
-
-
-
-document
-.getElementById(zielID)
-.innerHTML = html;
-
-
-}
-
 
 
 // =====================
 // START
 // =====================
 
-
 ladeTabelle();
+
 
 
 setInterval(
